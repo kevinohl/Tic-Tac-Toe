@@ -1,0 +1,34 @@
+* {
+    --field-size: 100px;
+    --highlight-color: #dbb2ff;
+    --accent-color: #332940;
+    --bg-color: #121212;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--highlight-color);
+}
+
+#board-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#board-grid {
+    display: grid;
+    grid-template-rows: repeat(3, var(--field-size));
+    grid-template-columns: repeat(3, var(--field-size));
+}
+
+.board-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent-color);
+    font-size: calc(var(--field-size)/2);
+    margin: 2px;
+}
+
