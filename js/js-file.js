@@ -1,11 +1,7 @@
 /* Gameboard implemented using the Module Pattern */
 const BoardController = (() => {
   const boardGrid = document.querySelector("#board-grid");
-  let boardContent = [
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-  ];
+  let boardContent;
 
   function resetBoard() {
     boardContent = [
