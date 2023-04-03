@@ -84,9 +84,9 @@ const GameFlowController = (() => {
       (boardFlat[0] &&
         [...boardFlat].slice(0, 3).every((x) => x === boardFlat[0])) ||
       (boardFlat[3] &&
-        [...boardFlat].slice(3, 3).every((x) => x === boardFlat[3])) ||
+        [...boardFlat].slice(3, 6).every((x) => x === boardFlat[3])) ||
       (boardFlat[6] &&
-        [...boardFlat].slice(6, 3).every((x) => x === boardFlat[6])) ||
+        [...boardFlat].slice(6, 9).every((x) => x === boardFlat[6])) ||
       // diagonally
       (boardFlat[0] &&
         boardFlat
