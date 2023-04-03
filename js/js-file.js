@@ -64,6 +64,7 @@ const Player = (name, marker) => {
     if (active) console.log(`It is now ${name}'s turn.`);
   }
 
+  // For now, player 2 is always controlled by the CPU, so this flag does nothing.
   function toggleAI() {
     cpu = !cpu;
     if (cpu) console.log(`${name} is now controlled by the CPU.`);
@@ -73,13 +74,20 @@ const Player = (name, marker) => {
 };
 
 const GameFlowController = (() => {
+  const gameOverElement = document.querySelector("#game-over-container");
+  const messageDiv = document.querySelector("#game-over-message");
+  const resetButton = document.querySelector("#reset-button");
+  resetButton.addEventListener("click", () => {
+    GameFlowController.initGame();
+  });
+
   const player1 = Player("Player 1", "X");
   const player2 = Player("Player 2", "O");
   // This way of checking for a winner is fine because we perform the check after every game action.
   // Without calling it after every action, we'd need to also return the marker of the winner.
   function checkWinner() {
     const boardFlat = [...BoardController.currentBoard()].flat();
-    if (
+    return (
       // rows
       (boardFlat[0] &&
         [...boardFlat].slice(0, 3).every((x) => x === boardFlat[0])) ||
@@ -109,9 +117,7 @@ const GameFlowController = (() => {
         boardFlat
           .filter((x, index) => [2, 5, 8].includes(index))
           .every((x) => x === boardFlat[2]))
-    )
-      return true;
-    return false;
+    );
   }
 
   function checkTie() {
@@ -121,12 +127,17 @@ const GameFlowController = (() => {
 
   function checkGameOver() {
     if (checkWinner()) {
-      const winner = player1.isActive() ? player1 : player2;
-      console.log("Joewarida! Biden Burasto!!!");
-      return `Game over. ${winner.name} has won the game.`;
+      player1.toggleActive();
+      // player 1 being active means player 2 just made its move
+      const winner = player1.isActive() ? player2 : player1;
+      messageDiv.textContent = `${winner.name} wins!`;
+      gameOverElement.classList.toggle("hidden");
+      return true;
     }
     if (checkTie()) {
-      return `Game over. Tie.`;
+      messageDiv.textContent = "Tie.";
+      gameOverElement.classList.toggle("hidden");
+      return true;
     }
     return false;
   }
@@ -166,6 +177,7 @@ const GameFlowController = (() => {
     player1.toggleActive();
     BoardController.resetBoard();
     BoardController.updateDisplay();
+    gameOverElement.classList.toggle("hidden");
   }
 
   return { initGame, makePlay, checkWinner, player1, player2 };
