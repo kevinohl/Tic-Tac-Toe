@@ -1,0 +1,14 @@
+{
+    "name": "Tic Tac Toe",
+    "short_name": "TTT",
+    "description": "Play Tic Tac Toe against a computer.",
+    "start_url" : "/",
+    "icons": [
+      {
+        "src": "src/my-icon.png",
+        "sizes": "any"
+      }
+    ],
+    "display": "standalone",
+    "orientation": "portrait"
+  }
