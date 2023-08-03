@@ -2,13 +2,15 @@
     "name": "Tic Tac Toe",
     "short_name": "TTT",
     "description": "Play Tic Tac Toe against a computer.",
-    "start_url" : "/",
+    "scope": "/Tic-Tac-Toe/",
+    "start_url": "/Tic-Tac-Toe/",
     "icons": [
       {
-        "src": "src/my-icon.png",
+        "src": "/Tic-Tac-Toe/src/my-icon.png",
         "sizes": "any"
       }
     ],
     "display": "standalone",
     "orientation": "portrait"
   }
+

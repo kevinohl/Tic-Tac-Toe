@@ -1,13 +1,35 @@
-const VERSION = "v1";
+// Change this to your repository name
+const GHPATH = '/Tic-Tac-Toe';
+
+// Choose a different app prefix name
+const APP_PREFIX = 'ttt';
+
+// The version of the cache. Every time you change any of the files
+// you need to change this version (version_01, version_02…). 
+// If you don't change the version, the service worker will give your
+// users the old files!
+const VERSION = 'version_00';
+
+// The files to make available for offline use. make sure to add 
+// others to this list
+const APP_STATIC_RESOURCES = [    
+  `${GHPATH}/`,
+  `${GHPATH}/index.html`,
+  `${GHPATH}/styles/styles.css`,
+  `${GHPATH}/js/js-file.js`,
+  `${GHPATH}/src/my-icon.png`
+]
+
 const CACHE_NAME = `tic-tac-toe-${VERSION}`;
 
-const APP_STATIC_RESOURCES = [
+/* const APP_STATIC_RESOURCES = [
     "/",
     "/index.html",
     "styles/styles.css",
     "js/js-file.js",
     "src/my-icon.png"
   ];
+ */
 
   // On install, cache the static resources
   self.addEventListener("install", (event) => {
